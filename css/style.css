@@ -1,0 +1,48 @@
+* {
+    border: 5px solid red;
+}
+#container{
+    width:95%;
+    height: 550px;
+    margin: auto auto;
+    border: 5px solid yellow;
+    position: relative;
+   } 
+
+#campo {
+    border: 5px solid green;
+    width: 400px;
+    height: 300px;
+    margin-left: 30%;
+    position: absolute;
+    
+}
+#ball{
+    border: 5px solid black;
+    width: 50px;
+    height: 50px;
+    margin-left: 30%;
+    position: absolute;
+}
+#barra{
+    border: 5px solid black;
+    width: 10px;
+    height: 50px;
+    margin-left: 70%;
+    position: absolute;
+}
+#goal{
+    border: 5px solid black;
+    width: 5px;
+    height: 30px;
+    margin-left: 0%;
+    position: absolute;
+}
+
+
+body {
+    width: 95%;
+    height: 580px;
+    margin: auto auto;
+}
+   
