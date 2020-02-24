@@ -14,31 +14,28 @@ body {
     position: relative;
     background-image: url(/images/stadium4.jpg);
     margin: auto auto;
-   
 } 
-
 #campo {
     border: 5px solid green;
     width: 535px;
     height: 275px;
     margin: 140px 0 0 175px;
     position: absolute;
-    
 }
-#ball > img{
+#ball{
     margin: 0 0 0 255px;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     position: absolute;
 }
-#barra > img{
+#barra{
     margin: 110px 0 0 490px;
     width: 30px;
     height: 60px;
     position: absolute;
 }
-#goal > img{
+#goal{
     margin: 100px 0 0 -25px;
     width: 30px;
     height: 70px;
