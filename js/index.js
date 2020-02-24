@@ -7,6 +7,8 @@ var campoBottom = 0;
 var barraTop = 0;
 var barraBottom = 0;
 var tops = 0;
+
+
 window.onload = function () {
     this.document.onkeydown = movebarra;
     var campoPos = campo.getBoundingClientRect();
@@ -27,8 +29,8 @@ function movebarra(event) {
         tops--;
         barra.style.top = tops + "px"
     }
-    if(barraTop == campoTop){
-        tops = tops -2;
+    if (barraTop == campoTop) {
+        tops = tops - 2;
     }
 }
 const moveball = function () {

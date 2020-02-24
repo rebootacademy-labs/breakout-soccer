@@ -11,9 +11,9 @@ body {
 #container{
     height: 568px;
     width: 895px;
-   position: relative;
-   background-image: url(../images/estadio.jpg);
-   margin: auto auto;
+    position: relative;
+    background-image: url(/images/stadium4.jpg);
+    margin: auto auto;
    
 } 
 
