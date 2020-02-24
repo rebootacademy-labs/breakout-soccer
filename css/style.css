@@ -22,7 +22,7 @@ body {
     margin: 140px 0 0 175px;
     position: absolute;
 }
-#ball{
+.ball{
     margin: 0 0 0 255px;
     width: 25px;
     height: 25px;
@@ -41,3 +41,11 @@ body {
     height: 70px;
     position: absolute;
 }
+
+#button{
+    background-color: lightgreen;
+    color: lightslategrey;
+    position: absolute;
+    margin-left: 0px;
+}
+

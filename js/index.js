@@ -1,7 +1,8 @@
-var ball = document.getElementById('ball');
+var ball = document.getElementsByClassName('ball');
 var barra = document.getElementById('barra');
 var goal = document.getElementById('goal');
 var campo = document.getElementById("campo");
+var button = document.getElementById("button");
 var campoTop = 0;
 var campoBottom = 0;
 var barraTop = 0;
@@ -36,4 +37,21 @@ function movebarra(event) {
         barra.style.top = tops + "0.1px"
     }
 }
+var timerId;
+
+function multball() {
+    var bolas = document.createElement("img");
+    bolas.innerHtml("ball");
+    bolas.setAttribute("class", "ball");
+    bolas.setAttribute("src", "images/ball.jpg");
+    campo.appendChild(bolas);
+}
+
+
+button.addEventListener("click", function (e) {
+    if (!moving) {
+        timerId = setInterval(multball, 3000);
+    }
+    moving = !moving;
+})
 
