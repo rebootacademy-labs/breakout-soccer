@@ -9,26 +9,31 @@ var barraBottom = 0;
 var tops = 0;
 
 window.onload = function () {
-    this.document.onkeydown = movebarra;
+    document.onkeydown = movebarra;
     var campoPos = campo.getBoundingClientRect();
-    this.campoTop = campoPos.top;
-    this.campoBottom = campoPos.bottom;
+    campoTop = campoPos.top;
+    campoBottom = campoPos.bottom;
 }
 function movebarra(event) {
     var codigo = event.keyCode;
     var barraPos = barra.getBoundingClientRect();
-    this.barraTop = barraPos.top;
-    this.barraBottom = barraPos.bottom;
-    if (codigo === 40) {
-        tops++;
-        barra.style.top = tops + "0.5px"
-    }
-    var codigo = event.keyCode;
-    if (codigo === 38) {
+    barraTop = barraPos.top;
+    barraBottom = barraPos.bottom;
+
+    if (barraTop >= campoTop + 5 && barraBottom <= campoBottom - 5) {
+        if (codigo === 40) {
+            tops++;
+            barra.style.top = tops + "0.1px"
+        } if (codigo === 38) {
+            tops--;
+            barra.style.top = tops + "0.1px"
+        }
+    } else if (barraTop >= campoTop + 5) {
         tops--;
-        barra.style.top = tops + "0.5px"
-    }
-    if (barraTop === campoTop) {
-        tops = tops -2;
+        barra.style.top = tops + "0.1px"
+    } else if (barraBottom <= campoBottom - 5) {
+        tops++;
+        barra.style.top = tops + "0.1px"
     }
 }
+
