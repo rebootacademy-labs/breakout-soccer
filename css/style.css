@@ -1,47 +1,46 @@
-* {
+{
     border: 5px solid red;
 }
+body {
+    width: 95%;
+    height: 600px;
+    margin: auto auto;
+    border: 5px solid yellow;
+}
+
 #container{
-    height: 1000px;
-    width: 900px;
+    height: 568px;
+    width: 895px;
    position: relative;
-   background-image: url(/breakout-soccer/images/Stadium4.jpg) ;
+   background-image: url(../images/stadium4.jpg);
+   margin: auto auto;
+   
 } 
 
 #campo {
     border: 5px solid green;
-    width: 200px;
-    height: 500px;
-    margin-left: 30%;
+    width: 535px;
+    height: 275px;
+    margin: 140px 0 0 175px;
     position: absolute;
     
 }
-#ball{
-    border: 5px solid black;
-    width: 10px;
-    height: 10px;
-    float: down;
+#ball > img{
+    margin: 0 0 0 255px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
     position: absolute;
 }
-#barra{
-    border: 5px solid black;
-    width: 10px;
-    height: 5px;
-    margin-left: 70%;
+#barra > img{
+    margin: 110px 0 0 490px;
+    width: 30px;
+    height: 60px;
     position: absolute;
 }
-#goal{
-    border: 5px solid black;
-    width: 5px;
-    height: 30px;
-    margin-left: 0%;
+#goal > img{
+    margin: 100px 0 0 -25px;
+    width: 30px;
+    height: 70px;
     position: absolute;
 }
-
-
-body {
-    width: 95%;
-    height: 580px;
-    margin: auto auto;
-}
-   
