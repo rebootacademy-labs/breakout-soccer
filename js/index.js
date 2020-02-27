@@ -13,16 +13,22 @@ const SLIDER = {
   top: 110,
   height: 60
 }
+var goals = 0;
+var sound = new Audio("../images/goal.mp3");
+var reboteSound = new Audio("../images/rebote.mp3");
+var gameOverSound = new Audio("../images/Loser.mp3");
+
+
 var game = {
   balls: [],
   timerId: null,
   start: function () {
     this.balls.push(new Ball());
-    this.timerball = setInterval(this.newball.bind(this),NEWBALL);
+    this.timerball = setInterval(this.newball.bind(this), NEWBALL);
     this.timerId = setInterval(this.update.bind(this), SPEED);
     document.addEventListener("keydown", slider.move.bind(slider));
   },
-  newball: function (){
+  newball: function () {
     this.balls.push(new Ball());
   },
   stop: function () {
@@ -30,12 +36,21 @@ var game = {
     this.timerId = null;
   },
   update: function () {
+
     this.balls.forEach(ball => {
       ball.move();
       if (ball.x < 0 && ball.y > GOAL.top && ball.y < GOAL.bottom) {
+        sound.play();
         ball.remove();
-        alert('GOLAZO!');
-      }else if(ball.x + ball.width  >= FIELD.width){
+        goals++
+        marcador.innerHTML = goals;
+        var gol = document.createElement("div");
+        gol.setAttribute("id", "gol");
+
+        alert("GOLAZO");
+      }
+      if (ball.x + ball.width >= FIELD.width) {
+        gameOverSound.play();
         alert("GAME OVER");
         this.balls = null;
         location.reload();
@@ -60,9 +75,9 @@ function Ball() {
   this.move = function () {
     if (this.x < 0 || this.x > (FIELD.width - this.width)) { this.incX *= -1; }
     if (this.y < 0 || this.y > (FIELD.height - this.height)) { this.incY *= -1; }
-    if (this.x + this.width > slider.left && this.y > slider.top && this.y < slider.top + slider.height) { this.incX *= -1; }
-    
-
+    if (this.x + this.width > slider.left && this.y > slider.top && this.y < slider.top + slider.height) { reboteSound.play(); this.incX *= -1; }
+    // if ( (this.y + this.height > slider.top && this.x + this.width > slider.left) 
+    //    || (this.y < slider.top + slider.height && this.x + this.width > slider.left) ) { this.incY *= -1; }
     this.x += this.incX;
     this.y += this.incY;
     this.html.style.top = `${this.y}px`;
@@ -70,6 +85,12 @@ function Ball() {
   }
   this.remove = function () {
     this.html.remove();
+    this.incX = 0;
+    this.incY = 0;
+    this.html.style.top = 0;
+    this.html.style.left = 0;
+    this.x = 0;
+    this.y = 0;
   }
 }
 
@@ -95,3 +116,4 @@ var slider = {
   }
 }
 game.start();
+
