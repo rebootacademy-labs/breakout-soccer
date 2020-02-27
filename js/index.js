@@ -44,14 +44,23 @@ var game = {
         ball.remove();
         goals++
         marcador.innerHTML = goals;
-        var gol = document.createElement("div");
-        gol.setAttribute("id", "gol");
-
-        alert("GOLAZO");
+        var gol = document.getElementById("gol")
+        gol.classList.remove('hidde')
+        gol.classList.add('show')
+        setTimeout(function () {
+          gol.classList.remove('show')
+          gol.classList.add('hidde')
+        }, 1000);
       }
       if (ball.x + ball.width >= FIELD.width) {
         gameOverSound.play();
-        alert("GAME OVER");
+        var over = document.getElementById("gameOver")
+        over.classList.remove('hidde')
+        over.classList.add('show')
+        setTimeout(function () {
+          over.classList.remove('show')
+          over.classList.add('hidde')
+        }, 5000);
         this.balls = null;
         location.reload();
       }
@@ -63,8 +72,8 @@ function Ball() {
   this.height = 25;
   this.x = 255;
   this.y = 120;
-  this.incX = Math.ceil((Math.random() * 2 - 1) * 10);
-  this.incY = Math.ceil((Math.random() * 2 - 1) * 10);
+  this.incX = Math.ceil((Math.random() * 1.6 - 0.8) * 10);
+  this.incY = Math.ceil((Math.random() * 1.6 - 0.8) * 10);
   this.html = document.createElement("div");
   this.html.setAttribute("class", "ball");
   this.html.style.top = `${this.y}px`;
@@ -76,8 +85,6 @@ function Ball() {
     if (this.x < 0 || this.x > (FIELD.width - this.width)) { this.incX *= -1; }
     if (this.y < 0 || this.y > (FIELD.height - this.height)) { this.incY *= -1; }
     if (this.x + this.width > slider.left && this.y > slider.top && this.y < slider.top + slider.height) { reboteSound.play(); this.incX *= -1; }
-    // if ( (this.y + this.height > slider.top && this.x + this.width > slider.left) 
-    //    || (this.y < slider.top + slider.height && this.x + this.width > slider.left) ) { this.incY *= -1; }
     this.x += this.incX;
     this.y += this.incY;
     this.html.style.top = `${this.y}px`;
@@ -115,5 +122,11 @@ var slider = {
     }
   }
 }
-game.start();
+
+var inicio = document.getElementById("button")
+inicio.addEventListener("click", function () {
+  game.start()
+  inicio.classList.add('hidde')
+});
+
 
