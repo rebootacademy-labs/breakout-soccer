@@ -60,7 +60,7 @@ var game = {
         setTimeout(function () {
           over.classList.remove('show')
           over.classList.add('hidde')
-        }, 5000);
+        }, 10000);
         this.balls = null;
         location.reload();
       }
