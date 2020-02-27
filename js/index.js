@@ -14,9 +14,9 @@ const SLIDER = {
   height: 60
 }
 var goals = 0;
-var sound = new Audio("../images/goal.mp3");
-var reboteSound = new Audio("../images/rebote.mp3");
-var gameOverSound = new Audio("../images/Loser.mp3");
+var sound = new Audio("./images/goal.mp3");
+var reboteSound = new Audio("./images/rebote.mp3");
+var gameOverSound = new Audio("./images/Loser.mp3");
 
 
 var game = {
