@@ -19,7 +19,7 @@
     width: 30px;
     height: 60px;
     position: absolute;
-    background-size: cover;    
+    background-size: cover;
 }
 #goal {
   top: 100px;
@@ -28,7 +28,7 @@
   height: 80px;
   position: absolute;
   background-image: url(../images/goal.png);
-  background-size: cover;  
+  background-size: cover;
 }
 .ball {
   top: 120px;
@@ -37,21 +37,28 @@
   height: 25px;
   border-radius: 50%;
   background-image: url(../images/ball.jpg);
-  background-size: cover;  
+  background-size: cover;
   position: absolute;
 }
 
-body {
+#marcadorWrapper {
+  position: absolute;
+  left: 20px;
   background-image: url(../images/marca.jpg);
-  margin: 0px 0 0 0px ;
   background-repeat: no-repeat;
+  width: 250px;
+  height: 200px;
 }
-#marcador{
-  font-size: 100px;
+
+#marcador {
+  position: absolute;
+  font-size: 98px;
   font-family: 'Courier New', Courier, monospace;
+  font-weight : 600;
   color: black;
-  margin: -100px 0 0 -500px;
-  font-weight : bold;
+  margin: 20px;
+  left: 11px;
+  top: 71px;
 }
 
 #gol{
@@ -73,8 +80,8 @@ body {
   display: block;
 }
 
-#button{
-  background-color:rgba(255, 255, 255, 0.178);
+#start {
+  background-color: rgb(1, 80, 148);
   color: black;
   border-color: black;
   position: absolute;
@@ -83,7 +90,7 @@ body {
   width: 200px;
   height: 80px;
   font-weight : bold;
-  font-size: large;
+  font-size: 2em;
 }
 
 #gif {

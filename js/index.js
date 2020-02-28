@@ -11,7 +11,8 @@ const FIELD = {
 }
 const SLIDER = {
   top: 110,
-  height: 60
+  height: 60,
+  width: 30
 }
 var goals = 0;
 var sound = new Audio("./images/goal2.mp3");
@@ -58,8 +59,6 @@ var game = {
         over.classList.remove('hidde')
         over.classList.add('show')
         setTimeout(function () {
-          // over.classList.remove('show')
-          // over.classList.add('hidde')
           location.reload()
         }, 3000);
         this.balls = null;
@@ -67,13 +66,18 @@ var game = {
     })
   }
 };
+
 function Ball() {
   this.width = 25;
   this.height = 25;
   this.x = 255;
   this.y = 120;
-  this.incX = Math.ceil((Math.random() * 1.6 - 0.8) * 10) + 5;
-  this.incY = Math.ceil((Math.random() * 1.6 - 0.8) * 10) + 5;
+
+  this.incX = Math.floor((Math.random() * 4)) + 5;
+  this.incY = Math.floor((Math.random() * 4)) + 5;
+  if (Math.random() > 0.8) { this.incX *= -1 }
+  if (Math.random() > 0.5) { this.incY *= -1 }
+
   this.html = document.createElement("div");
   this.html.setAttribute("class", "ball");
   this.html.style.top = `${this.y}px`;
@@ -81,26 +85,37 @@ function Ball() {
   this.html.style.width = `${this.width}px`;
   this.html.style.heigth = `${this.heigth}px`;
   document.getElementById("field").appendChild(this.html);
+
   this.move = function () {
+    this.bottom = this.y + this.height;
+    this.right = this.x + this.width;
+    slider.bottom = slider.top + slider.height;
+    slider.right = slider.left + slider.width;
+
+    // Left Rebound
     if (this.x < 0) { this.incX *= -1; }
-    if (this.y < 0 || this.y + this.height > FIELD.height) { this.incY *= -1; }
+
+    // Vertical Field Rebound
+    if (this.y < 0 ||
+      this.bottom > FIELD.height) { this.incY *= -1; }
     // Horizontal Rebound
-    if (this.x + this.width + 4 > slider.left && 
-        this.x + this.width < slider.left && 
-        this.y + this.height > slider.top &&
-        this.y < slider.top + slider.height) {
-        debugger 
-      reboteSound.play(); 
-      this.incX *= -1; 
+    if (this.right > slider.left &&
+      this.right < slider.left + 20 &&
+      this.bottom > slider.top &&
+      this.y < slider.bottom) {
+      reboteSound.play();
+      this.incX *= -1;
     }
+
     // Vertical Rebound
-    if(this.y > slider.top + slider.height  && 
-       this.y < slider.top + slider.height + 4 && 
-       this.x + this.width > slider.left && 
-       this.x < slider.left + slider.width){
-      reboteSound.play(); 
-      this.incY *= -1; 
+    if (this.y > slider.bottom &&
+      this.y < slider.bottom + 4 &&
+      this.right > slider.left &&
+      this.x < slider.right) {
+      reboteSound.play();
+      this.incY *= -1;
     }
+
     this.x += this.incX;
     this.y += this.incY;
     this.html.style.top = `${this.y}px`;
@@ -139,10 +154,8 @@ var slider = {
   }
 }
 
-var inicio = document.getElementById("button")
+var inicio = document.getElementById("start")
 inicio.addEventListener("click", function () {
   game.start()
   inicio.classList.add('hidde')
 });
-
-
