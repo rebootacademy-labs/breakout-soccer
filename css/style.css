@@ -44,21 +44,26 @@
 #marcadorWrapper {
   position: absolute;
   left: 20px;
-  background-image: url(../images/marca.jpg);
+  background-image: url(../images/marca.jpeg);
   background-repeat: no-repeat;
   width: 250px;
   height: 200px;
 }
 
-#marcador {
+#marcadorWrapper > div {
   position: absolute;
   font-size: 98px;
   font-family: 'Courier New', Courier, monospace;
   font-weight : 600;
   color: black;
-  margin: 20px;
-  left: 11px;
-  top: 71px;
+  top: 91px;
+}
+
+#marcador-maquina {
+  left: 31px;
+}
+#marcador-yo {
+  left: 137px;
 }
 
 #gol{

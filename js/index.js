@@ -15,6 +15,7 @@ const SLIDER = {
   width: 30
 }
 var goals = 0;
+var goalsMaquina = 0;
 var sound = new Audio("./images/goal2.mp3");
 var reboteSound = new Audio("./images/rebote.mp3");
 var gameOverSound = new Audio("./images/Loser.mp3");
@@ -40,11 +41,12 @@ var game = {
 
     this.balls.forEach(ball => {
       ball.move();
+      // Our goals
       if (ball.x < 0 && ball.y > GOAL.top && ball.y < GOAL.bottom) {
         sound.play();
         ball.remove();
-        goals++
-        marcador.innerHTML = goals;
+        goals++;
+        document.getElementById('marcador-yo').innerHTML = goals;
         var gol = document.getElementById("gol")
         gol.classList.remove('hidde')
         gol.classList.add('show')
@@ -53,7 +55,14 @@ var game = {
           gol.classList.add('hidde')
         }, 1000);
       }
+      // Machine Goals
       if (ball.x + ball.width >= FIELD.width) {
+        goalsMaquina++;
+        document.getElementById('marcador-maquina').innerHTML = goalsMaquina;
+        ball.remove();
+      }
+      // Lose Game
+      if (goalsMaquina === 3) {
         gameOverSound.play();
         var over = document.getElementById("gameOver")
         over.classList.remove('hidde')
