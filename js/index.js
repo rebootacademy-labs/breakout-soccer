@@ -14,7 +14,7 @@ const SLIDER = {
   height: 60
 }
 var goals = 0;
-var sound = new Audio("./images/goal.mp3");
+var sound = new Audio("./images/goal2.mp3");
 var reboteSound = new Audio("./images/rebote.mp3");
 var gameOverSound = new Audio("./images/Loser.mp3");
 
@@ -58,24 +58,22 @@ var game = {
         over.classList.remove('hidde')
         over.classList.add('show')
         setTimeout(function () {
-          
-          over.classList.remove('show')
-          over.classList.add('hidde')
-        }, 90000);
+          // over.classList.remove('show')
+          // over.classList.add('hidde')
+          location.reload()
+        }, 3000);
         this.balls = null;
-        location.reload();
       }
-      
     })
   }
-}
+};
 function Ball() {
   this.width = 25;
   this.height = 25;
   this.x = 255;
   this.y = 120;
-  this.incX = Math.ceil((Math.random() * 1.6 - 0.8) * 10);
-  this.incY = Math.ceil((Math.random() * 1.6 - 0.8) * 10);
+  this.incX = Math.ceil((Math.random() * 1.6 - 0.8) * 10) + 5;
+  this.incY = Math.ceil((Math.random() * 1.6 - 0.8) * 10) + 5;
   this.html = document.createElement("div");
   this.html.setAttribute("class", "ball");
   this.html.style.top = `${this.y}px`;
@@ -84,9 +82,25 @@ function Ball() {
   this.html.style.heigth = `${this.heigth}px`;
   document.getElementById("field").appendChild(this.html);
   this.move = function () {
-    if (this.x < 0 || this.x > (FIELD.width - this.width)) { this.incX *= -1; }
-    if (this.y < 0 || this.y > (FIELD.height - this.height)) { this.incY *= -1; }
-    if (this.x + this.width > slider.left && this.y > slider.top && this.y < slider.top + slider.height) { reboteSound.play(); this.incX *= -1; }
+    if (this.x < 0) { this.incX *= -1; }
+    if (this.y < 0 || this.y + this.height > FIELD.height) { this.incY *= -1; }
+    // Horizontal Rebound
+    if (this.x + this.width + 4 > slider.left && 
+        this.x + this.width < slider.left && 
+        this.y + this.height > slider.top &&
+        this.y < slider.top + slider.height) {
+        debugger 
+      reboteSound.play(); 
+      this.incX *= -1; 
+    }
+    // Vertical Rebound
+    if(this.y > slider.top + slider.height  && 
+       this.y < slider.top + slider.height + 4 && 
+       this.x + this.width > slider.left && 
+       this.x < slider.left + slider.width){
+      reboteSound.play(); 
+      this.incY *= -1; 
+    }
     this.x += this.incX;
     this.y += this.incY;
     this.html.style.top = `${this.y}px`;
@@ -101,7 +115,7 @@ function Ball() {
     this.x = 0;
     this.y = 0;
   }
-}
+};
 
 var slider = {
   top: 110,

@@ -86,3 +86,7 @@ body {
   font-size: large;
 }
 
+#gif {
+  position: absolute;
+  top: 40%;
+}
